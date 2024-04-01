@@ -370,7 +370,7 @@ EVENTS: dict[int, dict[str, Alert | AlertCallbackType]] = {
 
   # Car is not recognized
   EventName.startupNoCar: {
-    ET.PERMANENT: StartupAlert(_("Dashcam mode for unsupported car")),
+    ET.PERMANENT: StartupAlert(_("请打开设置，在上方蓝色处选则车型后重启")),
   },
 
   EventName.startupNoFw: {
@@ -397,8 +397,8 @@ EVENTS: dict[int, dict[str, Alert | AlertCallbackType]] = {
   # read-only mode. This can be solved by adding your fingerprint.
   # See https://github.com/commaai/openpilot/wiki/Fingerprinting for more information
   EventName.carUnrecognized: {
-    ET.PERMANENT: NormalPermanentAlert(_("Dashcam Mode"),
-                                       _("Car Unrecognized"),
+    ET.PERMANENT: NormalPermanentAlert(_("请打开设置"),
+                                       _("在上方蓝色处选则车型后重启"),
                                        priority=Priority.LOWEST),
   },
 
