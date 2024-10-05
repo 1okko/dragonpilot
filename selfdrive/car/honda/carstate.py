@@ -47,8 +47,8 @@ def get_can_messages(CP, gearbox_msg):
   if CP.flags & HondaFlags.BOSCH_ALT_BRAKE:
     messages.append(("BRAKE_MODULE", 50))
 
-  if CP.carFingerprint in (HONDA_BOSCH | {CAR.CIVIC, CAR.ODYSSEY, CAR.ODYSSEY_CHN}):
-    messages.append(("EPB_STATUS", 50))
+  #if CP.carFingerprint in (HONDA_BOSCH | {CAR.CIVIC, CAR.ODYSSEY, CAR.ODYSSEY_CHN}):
+    #messages.append(("EPB_STATUS", 50))
 
   if CP.carFingerprint in HONDA_BOSCH:
     # these messages are on camera bus on radarless cars
@@ -186,8 +186,8 @@ class CarState(CarStateBase):
     self.engineRpm = cp.vl["POWERTRAIN_DATA"]['ENGINE_RPM']
 
     # TODO: set for all cars
-    if self.CP.carFingerprint in (HONDA_BOSCH | {CAR.CIVIC, CAR.ODYSSEY, CAR.ODYSSEY_CHN}):
-      ret.parkingBrake = cp.vl["EPB_STATUS"]["EPB_STATE"] != 0
+    #if self.CP.carFingerprint in (HONDA_BOSCH | {CAR.CIVIC, CAR.ODYSSEY, CAR.ODYSSEY_CHN}):
+      #ret.parkingBrake = cp.vl["EPB_STATUS"]["EPB_STATE"] != 0
 
     gear = int(cp.vl[self.gearbox_msg]["GEAR_SHIFTER"])
     ret.gearShifter = self.parse_gear_shifter(self.shifter_values.get(gear, None))
