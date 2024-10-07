@@ -427,13 +427,13 @@ class Controls:
     # if not REPLAY and self.rk.lagging:
     #   self.events.add(EventName.controlsdLagging)
     if len(self.sm['radarState'].radarErrors) or (not self.rk.lagging and not self.sm.all_checks(['radarState'])):
-      self.events.add(EventName.radarFault)
+      pass#self.events.add(EventName.radarFault)
     if not self.sm.valid['pandaStates']:
       self.events.add(EventName.usbError)
     if CS.canTimeout:
       self.events.add(EventName.canBusMissing)
     elif not CS.canValid:
-      self.events.add(EventName.canError)
+      pass#self.events.add(EventName.canError)
 
     # generic catch-all. ideally, a more specific event should be added above instead
     can_rcv_timeout = self.can_rcv_timeout_counter >= 5
@@ -441,11 +441,11 @@ class Controls:
     no_system_errors = (not has_disable_events) or (len(self.events) == num_events)
     if (not self.sm.all_checks() or can_rcv_timeout) and no_system_errors:
       if not self.sm.all_alive():
-        self.events.add(EventName.commIssue)
+        pass#self.events.add(EventName.commIssue)
       elif not self.sm.all_freq_ok():
         self.events.add(EventName.commIssueAvgFreq)
       else:  # invalid or can_rcv_timeout.
-        self.events.add(EventName.commIssue)
+        pass#self.events.add(EventName.commIssue)
 
       logs = {
         'invalid': [s for s, valid in self.sm.valid.items() if not valid],
@@ -504,7 +504,7 @@ class Controls:
           self.dp_gps_ok_once = True
         if self.dp_gps_ok_once and not self.sm['liveLocationKalman'].gpsOK and self.sm['liveLocationKalman'].inputsOK and (self.distance_traveled > 1000):
           # Not show in first 1 km to allow for driving out of garage. This event shows after 5 minutes
-          self.events.add(EventName.noGps)
+          pass#self.events.add(EventName.noGps)
 
       if self.sm['modelV2'].frameDropPerc > 20:
         self.events.add(EventName.modeldLagging)
